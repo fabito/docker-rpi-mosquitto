@@ -1,14 +1,19 @@
-FROM resin/armhf-alpine
+# Original credit: https://github.com/toke/docker-mosquitto
+
+# Smallest base image
+FROM hypriot/rpi-alpine-scratch:v3.3
+
+MAINTAINER Oleg Kovalenko <monstrenyatko@gmail.com>
 
 RUN apk --no-cache add --update \
-    mosquitto \
-  && rm -rf /var/cache/apk/*
+        mosquitto \
+    && rm -rf /tmp/* /var/tmp/* /var/cache/apk/*
 
-RUN mkdir -p /mqtt/config /mqtt/data /mqtt/log
-COPY config /mqtt/config
-RUN chown -R mosquitto:mosquitto /mqtt
-VOLUME ["/mqtt/config", "/mqtt/data", "/mqtt/log"]
+RUN mkdir -p /config /data && chown -R mosquitto:mosquitto /config /data
+
+VOLUME ["/config", "/data"]
 
 EXPOSE 1883 9001
 
-CMD ["/usr/sbin/mosquitto", "-c", "/mqtt/config/mosquitto.conf"]
+CMD ["/usr/sbin/mosquitto", "-c", "/config/mosquitto.conf"]
+

@@ -1,18 +1,20 @@
 version: '2'
 services:
-  mqtt:
+  mosquitto:
     build: .
-    image: mqtt
+    image: monstrenyatko/rpi-mosquitto
+    container_name: mosquitto
     volumes:
-      - mqtt-conf:/mqtt/config:ro
-      - mqtt-data:/mqtt/data
-      - mqtt-log:/mqtt/log
+      - /etc/localtime:/etc/localtime:ro
+      - mosquitto-config:/config:ro
+      - mosquitto-data:/data
     ports:
       - "1883:1883"
       - "9001:9001"
-    restart: always
+    restart: unless-stopped
 volumes:
-  mqtt-conf:
-  mqtt-data:
-  mqtt-log:
+  mosquitto-config:
+    external: true
+  mosquitto-data:
+    external: true
 
