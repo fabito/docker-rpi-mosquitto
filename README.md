@@ -5,7 +5,7 @@
 #### Upstream Links
 
 * Docker Registry @[monstrenyatko/rpi-mosquitto](https://hub.docker.com/r/monstrenyatko/rpi-mosquitto/)
-* GitHub @[monstrenyatko/rpi-mosquitto](https://github.com/monstrenyatko/rpi-mosquitto)
+* GitHub @[monstrenyatko/docker-rpi-mosquitto](https://github.com/monstrenyatko/docker-rpi-mosquitto)
 * Fork of GitHub @[toke/docker-mosquitto](https://github.com/toke/docker-mosquitto)
 
 ## Quick Start
